@@ -297,3 +297,33 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/snap/clion/332/bin/cmake/linux/x64/share/cmake-3.30/Modules/FindMPI.cmake:1282 (try_compile)"
+      - "/snap/clion/332/bin/cmake/linux/x64/share/cmake-3.30/Modules/FindMPI.cmake:1326 (_MPI_try_staged_settings)"
+      - "/snap/clion/332/bin/cmake/linux/x64/share/cmake-3.30/Modules/FindMPI.cmake:1649 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:6 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ou0En7"
+      binary: "/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ou0En7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ou0En7'
+        
+        Run Build Command(s): /snap/clion/332/bin/ninja/linux/x64/ninja -v cmTC_a44d6
+        [1/2] /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -std=gnu11 -fdiagnostics-color=always -o CMakeFiles/cmTC_a44d6.dir/test_mpi.c.o -c /home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-ou0En7/test_mpi.c
+        [2/2] : && /usr/bin/cc   CMakeFiles/cmTC_a44d6.dir/test_mpi.c.o -o cmTC_a44d6  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib  /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so && :
+        
+      exitCode: 0
+...
