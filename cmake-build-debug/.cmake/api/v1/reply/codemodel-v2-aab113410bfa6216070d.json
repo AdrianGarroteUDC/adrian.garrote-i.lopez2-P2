@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.30"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "adrian_garrote_i_lopez2_P2",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "adrian_garrote_i_lopez2_P2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-adrian_garrote_i_lopez2_P2-Debug-d0ba99e6683f151034d1.json",
+					"name" : "adrian_garrote_i_lopez2_P2",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug",
+		"source" : "/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
