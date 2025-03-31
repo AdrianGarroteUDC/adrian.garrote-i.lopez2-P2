@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "mpi.h"
+#include "func_col_mpi.h"
 
 int main(int argc, char *argv[]) {
     int i, done = 0, rank, numProc, count, n;
@@ -30,7 +31,7 @@ int main(int argc, char *argv[]) {
 
     // Final
     //count = countLocal;
-    MPI_Reduce(&countLocal, &count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
+    MPI_(&countLocal, &count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
     if (rank == 0) {
         pi = ((double) count / (double) n) * 4.0;
 
