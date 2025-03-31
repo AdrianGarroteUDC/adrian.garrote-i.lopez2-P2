@@ -16,11 +16,8 @@ int main(int argc, char *argv[])
     if (rank == 0) {
         printf("Enter the number of points: (0 quits) \n");
         scanf("%d", &n);
-
-        MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
-    } else {
-        MPI_Recv(&n, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     }
+    MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     // Reparto del Trabajo
     int countLocal = 0;
@@ -33,9 +30,8 @@ int main(int argc, char *argv[])
     }
 
     // Final
-    count = countLocal;
-    MPI_Reduce(&countLocal, &count,1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-
+    //count = countLocal;
+    MPI_Reduce(&countLocal, &count, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
     if (rank == 0) {
         pi = ((double) count / (double) n) * 4.0;
 
