@@ -8,6 +8,8 @@ find_package(MPI REQUIRED)
 include_directories(${MPI_INCLUDE_PATH})
 
 add_executable(adrian_garrote_i_lopez2_P2
-        pi.c)
+        pi.c
+        func_col_mpi.c
+        func_col_mpi.h)
 
 target_link_libraries(adrian_garrote_i_lopez2_P2 ${MPI_LIBRARIES})

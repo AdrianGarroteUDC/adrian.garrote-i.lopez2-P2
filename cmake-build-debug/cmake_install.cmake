@@ -1,4 +1,4 @@
-# Install script for directory: /home/pichulin/Escritorio/CP/adrian.garrote-i.lopez2-P2
+# Install script for directory: /home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -57,6 +57,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/pichulin/Escritorio/CP/adrian.garrote-i.lopez2-P2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
