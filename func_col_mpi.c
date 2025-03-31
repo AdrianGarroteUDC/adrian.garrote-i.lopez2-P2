@@ -5,7 +5,7 @@
 #include "func_col_mpi.h"
 #include <mpi.h>
 
-int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype datatype, int root, MPI_Comm comm) {
+int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm) {
     int numProc, rank, acc, err=MPI_SUCCESS;
 
     MPI_Comm_size(MPI_COMM_WORLD, &numProc);
