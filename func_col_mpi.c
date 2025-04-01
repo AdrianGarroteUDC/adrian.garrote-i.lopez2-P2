@@ -6,9 +6,11 @@
 
 #include <math.h>
 #include <mpi.h>
+#include <stdlib.h>
 
 int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm) {
-    int numProc, rank, acc, err=MPI_SUCCESS;
+    int numProc, rank, err=MPI_SUCCESS;
+    int *acc;
 
     MPI_Comm_size(MPI_COMM_WORLD, &numProc);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -20,17 +22,24 @@ int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype da
         }
     }
     else {
+        for (int j = 0 ;j < count; j++) {
+            ((int*) recvbuff)[j]= ((int*)buff)[j];
+        }
+        acc= (int*) malloc(count*sizeof(int));
         for (int i = 1; i < numProc; i++) {
-            err= MPI_Recv(&acc, count, datatype, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+            err= MPI_Recv(acc, count, datatype, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
             if (err != MPI_SUCCESS) {
                 return err;
             }
-
             for (int j = 0 ;j < count; j++) {
-                ((int*) recvbuff)[j]+= (int*)acc;
+                ((int*) recvbuff)[j]+= acc[j];
             }
+
+
         }
+        free(acc);
     }
     return err;
 }

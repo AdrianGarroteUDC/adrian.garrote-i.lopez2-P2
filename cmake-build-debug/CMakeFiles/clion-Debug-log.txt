@@ -7,6 +7,6 @@
 -- Detecting C compile features - done
 -- Found MPI_C: /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so (found version "3.1")
 -- Found MPI: TRUE (found version "3.1")
--- Configuring done (0.7s)
+-- Configuring done (0.5s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/iago/Escritorio/CP/Paralelismo/practicas/p2/adrian.garrote-i.lopez2-P2/cmake-build-debug
