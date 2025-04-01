@@ -21,7 +21,7 @@ int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype da
     }
     else {
         for (int i = 1; i < numProc; i++) {
-            err= MPI_Recv(&acc, 1, datatype, i, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            err= MPI_Recv(&acc, count, datatype, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
             if (err != MPI_SUCCESS) {
                 return err;
