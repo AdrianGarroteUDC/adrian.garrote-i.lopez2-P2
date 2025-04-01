@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) {
         printf("Enter the number of points: (0 quits) \n");
         scanf("%d", &n);
     }
-    MPI_Bcast(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_BinomialColectiva(&n, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     // Reparto del Trabajo
     int countLocal = 0;

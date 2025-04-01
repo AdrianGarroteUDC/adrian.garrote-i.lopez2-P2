@@ -3,9 +3,8 @@
 //
 
 #include "func_col_mpi.h"
-
-#include <math.h>
 #include <mpi.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm) {
@@ -44,32 +43,46 @@ int MPI_FlattreeColectiva(void *buff, void *recvbuff, int count, MPI_Datatype da
     return err;
 }
 
-int MPI_BinomialColectiva(void *buff, int count, MPI_Datatype datatype, int root, MPI_Comm comm) {
-    int numProc, rank, err = MPI_SUCCESS;
+int MPI_BinomialColectiva(void *buffer, int count, MPI_Datatype datatype, int root, MPI_Comm comm) {
+    int num_procs, rank, err = MPI_SUCCESS;
 
-    MPI_Comm_size(comm, &numProc);
+    MPI_Comm_size(comm, &num_procs);
     MPI_Comm_rank(comm, &rank);
 
-    int steps = (int)log2(numProc);
+    // Pasos hasta sol
+    int pNecesarios = 0;
+    int potenciaDos = 1;
+    while (potenciaDos < num_procs) {
+        potenciaDos *= 2;
+        pNecesarios++;
+    }
 
-    for (int i = 0; i < steps; i++) {
-        int partner = rank + pow(2, i);
-        if (partner < numProc) {
-            if ((rank % (int)pow(2, i+1)) == 0) {
-                if (rank == root || (rank % (int)pow(2, i+1)) == 0) {
-                    err = MPI_Send(buff, count, datatype, partner, 0, comm);
-                    if (err != MPI_SUCCESS) {
-                        return err;
-                    }
-                }
-            } else {
-                int source = rank - pow(2, i);
-                err = MPI_Recv(buff, count, datatype, source, 0, comm, MPI_STATUS_IGNORE);
-                if (err != MPI_SUCCESS) {
-                    return err;
-                }
+    // Fase de difusión
+    potenciaDos = 1;  // Reset
+    for (int i = 0; i < pNecesarios; i++) {
+        int distancia = potenciaDos;  // 2^i
+
+        if (rank < distancia) {
+            int procReceptor = rank + distancia;
+            if (procReceptor < num_procs) {
+                printf("Proceso %d enviando a proceso %d\n", rank, procReceptor);
+                err = MPI_Send(buffer, count, datatype, procReceptor, 0, comm);
+                if (err != MPI_SUCCESS) return err;
             }
         }
+        else if (rank < 2 * distancia) {
+            int procEnvia = rank - distancia;
+            err = MPI_Recv(buffer, count, datatype, procEnvia, 0, comm, MPI_STATUS_IGNORE);
+            if (err != MPI_SUCCESS) return err;
+            printf("Proceso %d recibió datos de proceso %d\n", rank, procEnvia);
+        }
+
+        // Sincronización para que los prints no se mezclen
+        MPI_Barrier(comm);
+        if (rank == 0) printf("\n--- Fin Paso %d ---\n", i);
+        MPI_Barrier(comm);
+
+        potenciaDos *= 2;
     }
 
     return MPI_SUCCESS;
