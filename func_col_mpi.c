@@ -77,11 +77,6 @@ int MPI_BinomialColectiva(void *buffer, int count, MPI_Datatype datatype, int ro
             printf("Proceso %d recibió datos de proceso %d\n", rank, procEnvia);
         }
 
-        // Sincronización para que los prints no se mezclen
-        MPI_Barrier(comm);
-        if (rank == 0) printf("\n--- Fin Paso %d ---\n", i);
-        MPI_Barrier(comm);
-
         potenciaDos *= 2;
     }
 
